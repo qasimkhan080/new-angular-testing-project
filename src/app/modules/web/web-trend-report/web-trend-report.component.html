@@ -1,0 +1,91 @@
+<div class="bottom-content" *ngIf="length == 1">
+    <div class="row">
+        <div class="content-bottom">
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendSiteData[0].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendSiteData[0].Status}}
+                    </div>
+                    <div class="sub-head">{{WebTrendData.WebTrendSiteData[0].Name}}</div>
+                    <div style="padding-left: 49px;padding-right: 20px;text-align:justify;">
+                        <div [innerHTML]="WebTrendData.WebTrendSiteData[0].Description | safe: 'html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendNAEPLinkData[0].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendNAEPLinkData[0].Status}}
+                    </div>
+                    <ol style="padding-left:56px;" *ngIf="WebTrendData.WebTrendNAEPLinkData">
+                        <li *ngFor="let link of WebTrendData.WebTrendNAEPLinkData">
+                            {{link.Link}}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendTermData[0].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendTermData[0].Status}}
+                    </div>
+                    <ol style="padding-left:56px;" *ngIf="WebTrendData.WebTrendTermData">
+                        <li *ngFor="let link of WebTrendData.WebTrendTermData">
+                            {{link.Term}}
+                        </li>
+                    </ol>
+                </div>
+            </div>                      
+        </div>
+    </div>
+    <div class="row">
+        <div class="content-bottom" style="margin-top: -27px;">
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendSiteData[1].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendSiteData[1].Status}}
+                    </div>
+                    <div class="sub-head">{{WebTrendData.WebTrendSiteData[1].Name}}</div>
+                    <div style="padding-left: 49px;padding-right: 20px;text-align:justify;">
+                        <div [innerHTML]="WebTrendData.WebTrendSiteData[1].Description | safe: 'html'"></div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendNRCLinkData[0].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendNRCLinkData[0].Status}}
+                    </div>
+                    <ol style="padding-left:56px;" *ngIf="WebTrendData.WebTrendNRCLinkData">
+                        <li *ngFor="let link of WebTrendData.WebTrendNRCLinkData">
+                            {{link.Link}}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 thrr-col">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{WebTrendData.WebTrendResourceData[0].Icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.WebTrendResourceData[0].Status}}
+                    </div>
+                    <div style="padding-left: 49px;padding-right: 20px;text-align:justify;">
+                        <div [innerHTML]="WebTrendData.WebTrendResourceData[0].Description | safe: 'html'"></div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="bottom-content No-Data" *ngIf="length == 0">
+    <div class="row">
+        <div class="content-top No-Data-Content">
+            <div *ngIf="length == 1;else nodata_content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- dummy html  -->
+
+<ng-template #nodata_content>
+    Data is not available for this Month and Year 
+</ng-template>

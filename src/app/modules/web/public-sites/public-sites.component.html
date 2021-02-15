@@ -1,0 +1,79 @@
+<div class="bottom-content" *ngIf="apiResponse.length > 0">
+    <div class="row">
+        <div class="content-top">
+            <div class="head"><img src="" class="icon1">Releases/Enhancements</div>
+
+            <div *ngIf="apiResponse[0]?.Description;else nodata_content"
+                [innerHTML]="apiResponse[0]?.Description | safe: 'html'">
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="content-bottom">
+            <div class="col-sm-12  col-md-4 thrr-col ">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head"><img src="assets/icons/camicon.PNG" class="icon1">Reviewed</div>
+
+                    <div *ngIf="apiResponse[1]?.Description;else nodata_content"
+                        [innerHTML]="apiResponse[1]?.Description | safe: 'html'"></div>
+
+                    <ul class="col1-ul">
+                        <li *ngFor="let subTasks of apiResponse[1]?.SubTasks">
+                            {{subTasks.Description}}
+                            <a *ngFor="let ticket of subTasks.JiraTickets" target="_blank"
+                                href="https://stackoverflow.com/questions/{{ticket.JiraTicketId}}">{{ticket.JiraTicketId}},</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-sm-12  col-md-4 thrr-col ">
+                <div class="col-sm-12 thrr-col thrr-col2">
+                    <div class="head"><img src="assets/icons/jeticon.PNG" class="icon1">Released</div>
+
+                    <div *ngIf="apiResponse[2]?.Description;else nodata_content"
+                        [innerHTML]="apiResponse[2]?.Description | safe: 'html'"></div>
+
+                    <ul class="col2-ul">
+                        <li *ngFor="let subTasks of apiResponse[2]?.SubTasks">
+                            {{subTasks.Description}}
+                            <a *ngFor="let ticket of subTasks.JiraTickets" target="_blank"
+                                href="https://stackoverflow.com/questions/{{ticket.JiraTicketId}}">{{ticket.JiraTicketId}},</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-sm-12  col-md-4 thrr-col ">
+                <div class="col-sm-12 thrr-col thrr-col3">
+                    <div class="head"><img src="assets/icons/noteicon.PNG" class="icon1">Tested</div>
+
+                    <div *ngIf="apiResponse[3]?.Description;else nodata_content"
+                        [innerHTML]="apiResponse[3]?.Description | safe: 'html'"></div>
+
+                    <ul class="col3-ul">
+                        <li *ngFor="let subTasks of apiResponse[3]?.SubTasks">
+                            {{subTasks.Description}}
+                            <a *ngFor="let ticket of subTasks.JiraTickets" target="_blank"
+                                href="https://stackoverflow.com/questions/{{ticket.JiraTicketId}}">{{ticket.JiraTicketId}},</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-content No-Data" *ngIf="apiResponse.length === 0">
+    <div class="row">
+        <div class="content-top No-Data-Content">
+            <div *ngIf="apiResponse.length > 0;else nodata_content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- dummy html  -->
+
+<ng-template #nodata_content>
+    Data is not available for this Month and Year
+</ng-template>

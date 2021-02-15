@@ -1,0 +1,41 @@
+<div class="bottom-content" *ngIf="PrivateSiteData.length > 0">
+    <div class="row">
+        <div class="content-bottom">
+            <div class="col-sm-12  col-md-6 thrr-col" *ngFor="let Tasks of PrivateSiteData;let index = index">
+                <div class="col-sm-12 thrr-col thrr-col1">
+                    <div class="head">
+                        <img src="assets/icons/{{Tasks.Icon}}" class="icon1">&nbsp;&nbsp;{{Tasks.PrivateType}}
+                    </div>
+                    <div style="padding-right: 20px;text-align:justify;padding-left: 10px;">
+                        <div *ngIf="Tasks.Description;else release_content"
+                        [innerHTML]="Tasks.Description" style="font-size: 15px;"></div>
+                    </div>
+                    <ul *ngIf="Tasks.SubTasks">
+                        <li style="font-size: 15px;line-height: 2.5;" *ngFor="let subTasks of Tasks.SubTasks | slice : startPage:paginationLimit">
+                            {{subTasks.Description}}
+                            <a *ngFor="let ticket of subTasks.JiraTickets" target="_blank"
+                                href="https://stackoverflow.com/questions/{{ticket.JiraTicketId}}">{{ticket.JiraTicketId}},</a>
+                        </li>  
+                        <a *ngIf ="paginationLimit < Tasks.SubTasks.length" (click)="showMoreItems(index)">
+                            Show More
+                        </a>
+                        <a *ngIf ="paginationLimit > 1" (click)="showLessItems(index)">
+                            Show Less
+                        </a>                     
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-content No-Data" *ngIf="PrivateSiteData.length === 0">
+    <div class="row">
+        <div class="content-top No-Data-Content">
+            <div *ngIf="PrivateSiteData.length > 0;else nodata_content"></div>
+        </div>
+    </div>
+</div>
+
+<ng-template #nodata_content>
+    Data is not available for this Month and Year 
+</ng-template>
